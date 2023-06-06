@@ -1,6 +1,6 @@
-# Docker build an image and push to dockerhub
+# 1. Docker build an image and push to dockerhub
 
-## Action-2 my customized food court
+## 1.1 Action-2 my customized food court
 
 ```bash
 # https://www.stacksimplify.com/aws-eks/docker-basics/build-docker-image/
@@ -45,7 +45,7 @@ https://hub.docker.com/repositories
 
 <br><br><br><br><br><br>
 
-## Action-2 random nginx customized image
+## 1.2 Action-2 random nginx customized image
 
 ```bash
 # 1. run the nginx base container
@@ -88,5 +88,53 @@ $ docker push rickzhou/food_court:v1-release
 
 # 5. verify the same in dockerhub
 https://hub.docker.com/repositories
+
+```
+
+<br><br><br><br><br><br>
+
+## 1.3 Face arch issue in gcp instance
+
+```log
+➜  nginx docker logs -f foodcourt_container
+exec /docker-entrypoint.sh: exec format error
+```
+
+```bash
+# 1. check linux arch
+$ uname -m
+>> x86_64
+
+# check arch on mac
+$ uname -m
+>> arm64
+
+
+# https://docs.docker.com/build/building/multi-platform/
+
+# $ docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t rickzhou/food_court:v3  .
+$ docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t rickzhou/food_court:v3 --push .
+
+# facing issue
+➜  build docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t rickzhou/food_court:v3 .
+[+] Building 0.0s (0/0)
+ERROR: multiple platforms feature is currently not supported for docker driver. Please switch to a different driver (eg. "docker buildx create --use")
+
+
+# switch to different dirver
+$ docker buildx create --use
+$ docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t rickzhou/food_court:v3 --push .
+>> successful
+
+```
+
+![imgs](./imgs/Xnip2023-06-06_11-22-41.jpg)
+
+<br><br><br><br><br><br>
+
+```bash
+# https://hub.docker.com/repository/docker/rickzhou/food_court/tags?page=1&ordering=last_updated
+$ docker pull rickzhou/food_court:v3
+$ docker run --name foodcourt_container -p 80:80 -d rickzhou/food_court:v3
 
 ```
