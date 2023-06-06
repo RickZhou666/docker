@@ -1,4 +1,6 @@
-# Action-1
+# Docker build an image and push to dockerhub
+
+## Action-2 my customized food court
 
 ```bash
 # https://www.stacksimplify.com/aws-eks/docker-basics/build-docker-image/
@@ -43,7 +45,7 @@ https://hub.docker.com/repositories
 
 <br><br><br><br><br><br>
 
-# Action-2
+## Action-2 random nginx customized image
 
 ```bash
 # 1. run the nginx base container
