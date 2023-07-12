@@ -1,3 +1,12 @@
+# Common Commands
+``bash
+# copy file from container to local
+$ docker cp container-id:/path/filename.txt ~/Desktop/filename.txt
+
+```
+
+
+
 # 1. Docker build an image and push to dockerhub
 
 ## 1.1 Action-2 my customized food court
