@@ -1,7 +1,17 @@
 # Common Commands
-``bash
+```bash
 # copy file from container to local
 $ docker cp container-id:/path/filename.txt ~/Desktop/filename.txt
+
+# scp file from remote to remote
+$ sudo apt-get install zip -y
+$ zip -r rabbitmq.zip /var/cleodaemon/rabbitmq
+$ scp -r runzhou@10.176.16.104:/home/runzhou/rabbitmq.zip runzhou@10.183.161.139:/home/runzhou
+$ chown -R root:root rabbitmq.zip
+$ mv /home/runzhou/rabbitmq.zip /var/cleodaemon
+$ unzip rabbitmq.zip
+
+
 
 ```
 
