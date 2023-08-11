@@ -11,6 +11,9 @@ $ chown -R root:root rabbitmq.zip
 $ mv /home/runzhou/rabbitmq.zip /var/cleodaemon
 $ unzip rabbitmq.zip
 
+# edit docker startup file without recreate a new container
+# https://blog.csdn.net/legend818/article/details/126104722
+$ vim /var/lib/docker/containers/<container_id>
 
 
 ```
