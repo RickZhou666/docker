@@ -16,6 +16,31 @@ $ unzip rabbitmq.zip
 $ vim /var/lib/docker/containers/<container_id>
 
 
+# to get run command of a docker container
+$ docker inspect \
+  --format "$(curl -s https://gist.githubusercontent.com/efrecon/8ce9c75d518b6eb863f667442d7bc679/raw/run.tpl)" \
+  d1d2900e74ff
+
+>>docker run \
+  --name "/redis_container" \
+  --runtime "runc" \
+  --log-driver "json-file" \
+  --restart "no" \
+  --publish "0.0.0.0:6379:6379/tcp" \
+  --network "bridge" \
+  --hostname "d1d2900e74ff" \
+  --expose "6379/tcp" \
+  --env "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" \
+  --env "GOSU_VERSION=1.16" \
+  --env "REDIS_VERSION=7.2.0" \
+  --env "REDIS_DOWNLOAD_URL=http://download.redis.io/releases/redis-7.2.0.tar.gz" \
+  --env "REDIS_DOWNLOAD_SHA=8b12e242647635b419a0e1833eda02b65bf64e39eb9e509d9db4888fb3124943" \
+  --detach \
+  --entrypoint "docker-entrypoint.sh" \
+  "redis" \
+  "redis-server" "--appendonly" "yes" "--requirepass" "redis" 
+
+
 ```
 
 
