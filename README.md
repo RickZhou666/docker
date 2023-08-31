@@ -17,6 +17,7 @@ $ vim /var/lib/docker/containers/<container_id>
 
 
 # to get run command of a docker container
+# https://stackoverflow.com/a/38077377/7163137
 $ docker inspect \
   --format "$(curl -s https://gist.githubusercontent.com/efrecon/8ce9c75d518b6eb863f667442d7bc679/raw/run.tpl)" \
   d1d2900e74ff
